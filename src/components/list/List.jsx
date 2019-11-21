@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Loading from '../commons/Loading';
+import Table from './Table';
 
 import { handleResponse } from '../../helper';
 import { API_URL } from '../../config';
-
-import './Table.css';
 
 class List extends Component {
   constructor() {
@@ -49,52 +48,21 @@ class List extends Component {
   render() {
     const { loading, error, currencies } = this.state;
 
-    // render only loading, if the state is set to true
     if (loading) {
-      return (
-        <div className="loading-container"><Loading /></div>
-      );
+      // render only loading, if the state is set to true
+      return <div className="loading-container"><Loading /></div>;
     }
 
-    // show error if something went wrong on fetching data
     if (error) {
-      return (
-        <div className="error">{error}</div>
-      );
+      // show error if something went wrong on fetching data
+      return <div className="error">{error}</div>;
     }
 
     return (
-      <div className="Table-container">
-        <table className="Table">
-          <thead className="Table-head">
-            <tr>
-              <th>Cryptocurrency</th>
-              <th>Price</th>
-              <th>Market Cap</th>
-              <th>24H Change</th>
-            </tr>
-          </thead>
-          <tbody className="Table-body">
-          {currencies.map((currency) => (
-            <tr key={currency.id}>
-              <td>
-                <span className="Table-rank">{currency.rank}</span>
-                {currency.name}
-              </td>
-              <td>
-                <span className="Table-dollar">$ {currency.price}</span>
-              </td>
-              <td>
-                <span className="Table-dollar">$ {currency.marketCap}</span>
-              </td>
-              <td>
-                {this.renderChangePercent(currency.percentChange24h)}
-              </td>
-            </tr>
-          ))}
-          </tbody>
-        </table>
-      </div>
+      <Table
+        currencies={currencies}
+        renderChangePercent={this.renderChangePercent}
+      />
     );
   }
 }
