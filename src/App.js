@@ -1,12 +1,14 @@
 import React from 'react';
+import Header from './components/commons/Header';
+import List from './components/list/List';
+
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
+    <div>
+      <Header />
+      <List />
     </div>
   );
 }
