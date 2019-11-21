@@ -47,7 +47,7 @@ class List extends Component {
   }
 
   render() {
-    const { loading, error } = this.state;
+    const { loading, error, currencies } = this.state;
 
     // render only loading, if the state is set to true
     if (loading) {
@@ -75,7 +75,7 @@ class List extends Component {
             </tr>
           </thead>
           <tbody className="Table-body">
-          {this.state.currencies.map((currency) => (
+          {currencies.map((currency) => (
             <tr key={currency.id}>
               <td>
                 <span className="Table-rank">{currency.rank}</span>
